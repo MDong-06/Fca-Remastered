@@ -37,8 +37,8 @@ global.Fca = new Object({
             "Language": "vi",
             "PreKey": "",
             "AutoUpdate": true,
-            "MainColor": "#9900FF",
-            "MainName": "[ FCA-HZI ]",
+            "MainColor": "#00FFFF",
+            "MainName": "[ FCA-DONG ]",
             "Uptime": false,
             "Config": "default",
             "Login2Fa": false,
@@ -48,11 +48,7 @@ global.Fca = new Object({
             "EncryptFeature": true,
             "ResetDataLogin": false,
             "AutoRestartMinutes": 0,
-            "HTML": {   
-                "HTML": true,
-                "UserName": "Guest",
-                "MusicLink": "https://drive.google.com/uc?id=1zlAALlxk1TnO7jXtEP_O6yvemtzA2ukA&export=download"
-            }   
+            "HTML": {}   
         },
         CountTime: function() {
             var fs = global.Fca.Require.fs;
@@ -1135,11 +1131,11 @@ try {
                     Fetch('https://raw.githubusercontent.com/KanzuXHorizon/Fca-Horizon-Remastered/main/package.json').then(async (/** @type {{ body: { toString: () => string; }; }} */res) => {
                         const localVersion = global.Fca.Version;
                             if (Number(localVersion.replace(/\./g,"")) < Number(JSON.parse(res.body.toString()).version.replace(/\./g,"")) ) {
-                                log.warn("[ FCA-HZI ] •",getText(Language.NewVersionFound,global.Fca.Version,JSON.parse(res.body.toString()).version));
+                                log.warn("[ FCA-DONG ] •",getText(Language.NewVersionFound,global.Fca.Version,JSON.parse(res.body.toString()).version));
                                 if (global.Fca.Require.FastConfig.AutoUpdate == true) { 
-                                    log.warn("[ FCA-HZI ] •",Language.AutoUpdate);
+                                    log.warn("[ FCA-DONG ] •",Language.AutoUpdate);
                                         try {
-                                            execSync('npm install Fca-Horizon-Remastered@latest', { stdio: 'inherit' });
+                                            execSync('npm install Fca-Dongdz-Remake@latest', { stdio: 'inherit' });
                                                 logger.Success(Language.UpdateSuccess)
                                                     logger.Normal(Language.RestartAfterUpdate);
                                                     await new Promise(resolve => setTimeout(resolve,5*1000));
@@ -1154,16 +1150,16 @@ try {
                                                 logger.Error('Cập Nhật Đã Lỗi Tiến Hành Xóa Package');
                                                     execSync('npm cache clean --force', { stdio: 'ignore'})
                                                         await new Promise(resolve => setTimeout(resolve, 2*1000))
-                                                            fs.removeSync('../fca-horizon-remastered');
-                                                                // why stdio is not studio :v 
+                                                            fs.removeSync('../fca-dongdz-remake');
+                                                                // wnot studio :v 
                                                             await new Promise(resolve => setTimeout(resolve, 2*1000))
-                                                        execSync('npm i fca-horizon-remastered@latest', { stdio: 'inherit'})
+                                                        execSync('npm i fca-dongdz-remake@latest', { stdio: 'inherit'})
                                                     logger.Success("Đã Thành Công - Tiến Hành Restart");
                                                 process.exit(1);
                                             }
                                             catch (e) {
                                                 logger.Warning("Đã Bị Lỗi Hãy Nhập Vào Console Mã Sau Đây Để Fix !");
-                                                    logger.Warning("rmdir -rf ./node_modules/fca-horizon-remastered && npm i fca-horizon-remastered@latest && npm start");
+                                                    logger.Warning("rmdir -rf ./node_modules/fca-dongdz-remake && npm i fca-dongdz-remake@latest && npm start");
                                                     logger.Warning("Hãy Copy Hết Những Chữ Trên, Cần Làm Đúng 100% Nếu Ko File Bạn Sẽ Bay Màu ✨")
                                                 process.exit(0);
                                             }
@@ -1212,9 +1208,9 @@ function setUserNameAndPassWord() {
     let localbrand2 = global.Fca.Version
     console.clear();
     console.log(figlet.textSync('Horizon', {font: 'ANSI Shadow',horizontalLayout: 'default',verticalLayout: 'default',width: 0,whitespaceBreak: true }));
-    console.log(chalk.bold.hex('#9900FF')("[</>]") + chalk.bold.yellow(' => ') + "Operating System: " + chalk.bold.red(os.type()));
-    console.log(chalk.bold.hex('#9900FF')("[</>]") + chalk.bold.yellow(' => ') + "Machine Version: " + chalk.bold.red(os.version()));
-    console.log(chalk.bold.hex('#9900FF')("[</>]") + chalk.bold.yellow(' => ') + "Fca Version: " + chalk.bold.red(localbrand2) + '\n');
+    console.log(chalk.bold.hex('#00FFFF')("[</>]") + chalk.bold.yellow(' => ') + "Operating System: " + chalk.bold.red(os.type()));
+    console.log(chalk.bold.hex('#00FFFF')("[</>]") + chalk.bold.yellow(' => ') + "Machine Version: " + chalk.bold.red(os.version()));
+    console.log(chalk.bold.hex('#00FFFF')("[</>]") + chalk.bold.yellow(' => ') + "Fca Version: " + chalk.bold.red(localbrand2) + '\n');
     try {
         rl.question(Language.TypeAccount, (Account) => {
             if (!Account.includes("@") && global.Fca.Require.utils.getType(parseInt(Account)) != "Number") return logger.Normal(Language.TypeAccountError, function () { process.exit(1) }); //Very Human
